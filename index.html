@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plasma Confinement Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+
+    <header class="top-bar">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">PLASMA CONFINEMENT SIMULATOR</span>
+      </div>
+      <div class="status-row">
+        <span class="status-dot" id="statusDot"></span>
+        <span class="status-label" id="statusLabel">IDLE</span>
+        <span class="fps-display">FPS: <span id="fpsCounter">--</span></span>
+      </div>
+    </header>
+
+    <main class="main-content">
+
+      <div class="chamber-wrapper">
+        <div class="chamber-label">REACTOR CHAMBER — TOROIDAL VIEW</div>
+        <div class="canvas-frame">
+          <canvas id="plasmaCanvas"></canvas>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+        </div>
+        <div class="chamber-stats">
+          <div class="stat-item">
+            <span class="stat-label">PARTICLES</span>
+            <span class="stat-value" id="particleCount">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">CONFINEMENT</span>
+            <span class="stat-value" id="confinementStatus">--</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">PLASMA TEMP</span>
+            <span class="stat-value" id="plasmaTemp">--</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="control-panel">
+
+        <div class="panel-section">
+          <div class="section-title">SIMULATION CONTROLS</div>
+          <button class="btn-start" id="startBtn">START SIMULATION</button>
+          <button class="btn-reset" id="resetBtn">RESET</button>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-title">FIELD PARAMETERS</div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label class="slider-label">Plasma Heat</label>
+              <span class="slider-sublabel">Kinetic Energy</span>
+            </div>
+            <input type="range" class="slider" id="heatSlider" min="1" max="100" value="40" />
+            <div class="slider-footer">
+              <span class="slider-min">LOW</span>
+              <span class="slider-val" id="heatVal">40</span>
+              <span class="slider-max">HIGH</span>
+            </div>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label class="slider-label">Magnetic Field Strength</label>
+              <span class="slider-sublabel">B-Field (Tesla)</span>
+            </div>
+            <input type="range" class="slider" id="bfieldSlider" min="1" max="100" value="55" />
+            <div class="slider-footer">
+              <span class="slider-min">WEAK</span>
+              <span class="slider-val" id="bfieldVal">55</span>
+              <span class="slider-max">STRONG</span>
+            </div>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label class="slider-label">Central Gravity</label>
+              <span class="slider-sublabel">Containment Force</span>
+            </div>
+            <input type="range" class="slider" id="gravitySlider" min="1" max="100" value="30" />
+            <div class="slider-footer">
+              <span class="slider-min">NONE</span>
+              <span class="slider-val" id="gravityVal">30</span>
+              <span class="slider-max">MAX</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-title">SYSTEM TELEMETRY</div>
+          <div class="telemetry-grid">
+            <div class="telem-item">
+              <span class="telem-label">B-Field Integrity</span>
+              <div class="telem-bar-wrap">
+                <div class="telem-bar" id="bfieldBar"></div>
+              </div>
+            </div>
+            <div class="telem-item">
+              <span class="telem-label">Heat Output</span>
+              <div class="telem-bar-wrap">
+                <div class="telem-bar heat" id="heatBar"></div>
+              </div>
+            </div>
+            <div class="telem-item">
+              <span class="telem-label">Containment Field</span>
+              <div class="telem-bar-wrap">
+                <div class="telem-bar gravity" id="gravityBar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-title">LEGEND</div>
+          <div class="legend">
+            <div class="legend-item"><span class="legend-dot hot"></span>High-energy ions</div>
+            <div class="legend-item"><span class="legend-dot mid"></span>Mid-energy ions</div>
+            <div class="legend-item"><span class="legend-dot cold"></span>Low-energy ions</div>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
